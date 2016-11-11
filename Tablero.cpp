@@ -51,7 +51,21 @@ void Tablero::menu()
 				if(moverPieza(x,y,pieza)!=0)
 				{
 					conversionPiezas(x,y,pieza);
+					cont++;
 				}
+
+				if(espaciosA()==0)
+				{
+					cout<<"Jugador 2 gana"<<endl;
+					op++;
+				}
+
+				if(espaciosB()==0)
+				{
+					cout<<"Jugador 1 gana"<<endl;
+					op++;
+				}
+
 				if(espaciosVacios()==0)
 				{
 					if(espaciosA()>espaciosB())
@@ -62,6 +76,7 @@ void Tablero::menu()
 						cout<<"Empate"<<endl;
 					op++;
 				}
+
 			}
 			else
 				cout<<"Posición inválida."<<endl;
@@ -297,31 +312,43 @@ void Tablero::conversionPiezas(int p1, int p2, int pieza)
 	int pieza2;
 
 	if(pieza==1)
+	{
 		pieza2=2;
+	}
 	else
+	{
 		pieza2=1;
+	}
 
-	if((p1+1<11&&p2+1<11)&&tablero[p1+1][p2+1]==pieza2)
+	//Diagonal abajo, derecha
+	if((p1+1<11&&p2+1<11)&&(tablero[p1+1][p2+1]==pieza2))
 		tablero[p1+1][p2+1]=pieza;
 	
-	if((p1+1<11&&p2-1>-1)&&tablero[p1+1][p2-1]==pieza2)
+	//Diagonal abajo, izquierda
+	if((p1+1<11&&p2-1>-1)&&(tablero[p1+1][p2-1]==pieza2))
                 tablero[p1+1][p2-1]=pieza;
 	
-	if((p1-1>-1&&p2-1>-1)&&tablero[p1-1][p2-1]==pieza2)
+	//Diagonal arriba, izquierda
+	if((p1-1>-1&&p2-1>-1)&&(tablero[p1-1][p2-1]==pieza2))
                 tablero[p1-1][p2-1]=pieza;
 	
-	if((p1-1>-1&&p2+1<11)&&tablero[p1-1][p2+1]==pieza2)
+	//Diagonal arriba, derecha
+	if((p1-1>-1&&p2+1<11)&&(tablero[p1-1][p2+1]==pieza2))
                 tablero[p1-1][p2+1]=pieza;
 
-	if(p1+1<11&&tablero[p1+1][p2]==pieza2)
-		tablero[p1+1][p2]=pieza;
-	
+	//Derecha
 	if(p2+1<11&&tablero[p1][p2+1]==pieza2)
-                tablero[p1][p2+1]=pieza;
+		tablero[p1+1][p2+1]=pieza;
 	
+	//Abajo
+	if(p2+1<11&&tablero[p1][p2+1]==pieza2)
+                tablero[p1+1][p2]=pieza;
+	
+	//Arriba
 	if(p1-1>-1&&tablero[p1-1][p2]==pieza2)
                 tablero[p1-1][p2]=pieza;
 	
+	//Izquierda
 	if(p2-1>-1&&tablero[p1][p2-1]==pieza2)
                 tablero[p1][p2-1]=pieza;
 
