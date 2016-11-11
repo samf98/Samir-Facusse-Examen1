@@ -11,12 +11,14 @@ class Tablero
 
 	public:
 		Tablero();
+		void menu();
 		void llenarTablero();
 		void imprimirTablero();
 		int espaciosVacios();
 		int espaciosA();
 		int espaciosB();
-		void moverPieza();
+		int moverPieza(int,int,int);
+		void conversionPiezas(int,int,int);
 
 		~Tablero();
 

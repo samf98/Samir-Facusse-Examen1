@@ -23,7 +23,7 @@ Tablero::~Tablero()
 	
 }
 
-void menu()
+void Tablero::menu()
 {
 	int cont = 0;
 	int op = 0;
@@ -33,7 +33,7 @@ void menu()
 	int y = 0;
 	do
 	{
-		
+		imprimirTablero();
 		if(cont%2==0)
 			pieza = 1;
 		else
@@ -48,7 +48,10 @@ void menu()
 		{
 			if(tablero[x][y]==pieza)
 			{
-				
+				if(moverPieza(x,y,pieza)!=0)
+				{
+					
+				}
 			}
 			else
 				cout<<"Posición inválida."<<endl;
@@ -59,11 +62,12 @@ void menu()
 
 }
 
-void moverPieza(int p1, int p2)
+int Tablero::moverPieza(int p1, int p2,int pieza)
 {
+	int cont = 0;
 	int direccion = 0;
 	int cuadros=0;
-	cout<<"Escoja una dirección: "<<endl<<"1-Arriba"<<endl<<"2-Abajo"<<endl<<"3-Izquierda"<<endl<<"4-Derecha"<<endl<<"5-Diagonal arriba a la derecha"<<endl<<"6-Diagonal arriba a la izquierda"<<endl<<"7-Diagonal abajo a la izquierda"<<endl<<"8-Diagonal abajo a la derecha";
+	cout<<"Escoja una dirección: "<<endl<<"1-Arriba"<<endl<<"2-Abajo"<<endl<<"3-Izquierda"<<endl<<"4-Derecha"<<endl<<"5-Diagonal arriba a la derecha"<<endl<<"6-Diagonal arriba a la izquierda"<<endl<<"7-Diagonal abajo a la izquierda"<<endl<<"8-Diagonal abajo a la derecha"<<endl;
 	cin>>direccion;
 	cout<<"Escoja la cantidad de cuadros que se va a mover: ";
 	cin>>cuadros;
@@ -77,15 +81,21 @@ void moverPieza(int p1, int p2)
 			{
 				if(cuadros==1)
 				{
-					if(y+1<11)
-						tablero[x][y+1]=pieza;
+					if(p1-1>-1&&tablero[p1-1][p2]==0)
+					{
+						tablero[p1-1][p2]=pieza;
+						cont++;
+					}
 					else
 						cout<<"Posición invalida."<<endl;
 				}
 				else
 				{
-					if(y+2<11)
-						tablero[x][y+2]=pieza;
+					if(p1-2>-1&&(tablero[p1-2][p2]==0&&tablero[p1-1][p2]==0))
+					{
+						tablero[p1-2][p2]=pieza;
+						cont++;
+					}
 					else
 						cout<<"Posición invalida."<<endl;
 				}
@@ -93,41 +103,183 @@ void moverPieza(int p1, int p2)
 			}
 			case 2:
 			{
+				if(cuadros==1)
+				{
+					if(p1+1<11&&tablero[p1+1][p2]==0)
+					{
+						tablero[p1+1][p2]=pieza;
+						cont++;
+					}
+					else
+						cout<<"Posición invalida."<<endl;
+				}
+				else
+				{
+					if(p1+2<11&&(tablero[p1+2][p2]==0&&tablero[p1+1][p2]==0))
+					{
+						tablero[p1+2][p2]=pieza;
+						cont++;
+					}
+					else
+						cout<<"Posición invalida."<<endl;
+				}
 				break;
 			}
 			case 3:
 			{
+				if(cuadros==1)
+				{
+					if(p2-1>-1&&tablero[p1][p2-1]==0)
+					{
+						tablero[p1][p2-1]=pieza;
+						cont++;
+					}
+					else
+						cout<<"Posición invalida."<<endl;
+				}
+				else
+				{
+					if(p2-2>-1&&(tablero[p1][p2-2]==0&&tablero[p1][p2-1]==0))
+					{
+						tablero[p1][p2-2]=pieza;
+						cont++;
+					}
+					else
+						cout<<"Posición invalida."<<endl;
+				}
 				break;
 			}
                         case 4:
                         {
+                                if(cuadros==1)
+                                {
+                                        if(p2+1<11&&tablero[p1][p2+1]==0)
+                                        {
+                                                tablero[p1][p2+1]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+                                }
+                                else
+                                {
+                                        if(p2+2<11&&(tablero[p1][p2+2]==0&&tablero[p1][p2+1]==0))
+                                        {
+                                                tablero[p1][p2+2]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+                                }
+
                                 break;
                         }
                         case 5:
                         {
+				if(cuadros == 1)
+				{
+					if((p1+1<11&&p2+1<11)&&tablero[p1+1][p2+1]==0)
+					{
+						tablero[p1+1][p2+1]=pieza;
+						cont++;
+					}
+					else
+						cout<<"Posición invalida."<<endl;
+				}
+				else
+				{
+                                        if((p1+2<11&&p2+2<11)&&(tablero[p1+2][p2+2]==0&&tablero[p1+1][p2+1]))
+                                        {
+                                                tablero[p1+2][p2+2]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+
+				}
                                 break;
                         }
                         case 6:
                         {
+                                if(cuadros == 1)
+                                {
+                                        if((p1+1<11&&p2-1>-1)&&tablero[p1+1][p2-1]==0)
+                                        {
+                                                tablero[p1+1][p2-1]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+                                }
+                                else
+                                {
+                                        if((p1+2<11&&p2-2>-1)&&(tablero[p1+2][p2-2]==0&&tablero[p1+1][p2-1]==0))
+                                        {
+                                                tablero[p1+2][p2+2]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+
+                                }
+
                                 break;
                         }
                         case 7:
                         {
+                                if(cuadros == 1)
+                                {
+                                        if((p1-1>-1&&p2-1>-1)&&tablero[p1-1][p2-1]==0)
+                                        {
+                                                tablero[p1-1][p2-1]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+                                }
+                                else
+                                {
+                                        if((p1-2>-1&&p2-2>-1)&&tablero[p1-2][p2-2]==0)
+                                        {
+                                                tablero[p1-2][p2-2]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+
+                                }
+
                                 break;
                         }
                         case 8:
                         {
+                                if(cuadros == 1)
+                                {
+                                        if((p1-1>-1&&p2+1<11)&&tablero[p1-1][p2+1]==0)
+                                        {
+                                                tablero[p1+1][p2+1]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+                                }
+                                else
+                                {
+                                        if((p1-2>-1&&p2+2<11)&&tablero[p1-2][p2+2]==0)
+                                        {
+                                                tablero[p1-2][p2+2]=pieza;
+                                                cont++;
+                                        }
+                                        else
+                                                cout<<"Posición invalida."<<endl;
+
+                                }
+
                                 break;
                         }
 		}
 	}
-}
-
-int validarMovimiento(int x, int y)
-{
-	int validacion=0;
-	if(x==2||y==2)
-	return validacion;
+	return cont;
 }
 
 void Tablero::llenarTablero()
@@ -155,7 +307,7 @@ void Tablero::imprimirTablero()
 	}
 }
 
-int espaciosVacios()
+int Tablero::espaciosVacios()
 {
 	int count=0;
 	for(int i = 0; i < 11; i++)
@@ -170,7 +322,7 @@ int espaciosVacios()
 
 }
 
-int espaciosA()
+int Tablero::espaciosA()
 {
         int count=0;
         for(int i = 0; i < 11; i++)
@@ -185,7 +337,7 @@ int espaciosA()
 
 }
 
-int espaciosB()
+int Tablero::espaciosB()
 {
         int count=0;
         for(int i = 0; i < 11; i++)
