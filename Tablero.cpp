@@ -50,9 +50,9 @@ void Tablero::menu()
 			{
 				if(moverPieza(x,y,pieza)!=0)
 				{
-					
+					conversionPiezas(x,y,pieza);
 				}
-				if(espaciosVacios==0)
+				if(espaciosVacios()==0)
 				{
 					if(espaciosA()>espaciosB())
 						cout<<"Jugador 1 gana"<<endl;
@@ -290,6 +290,42 @@ int Tablero::moverPieza(int p1, int p2,int pieza)
 		}
 	}
 	return cont;
+}
+
+void Tablero::conversionPiezas(int p1, int p2, int pieza)
+{
+	int pieza2;
+
+	if(pieza==1)
+		pieza2=2;
+	else
+		pieza2=1;
+
+	if((p1+1<11&&p2+1<11)&&tablero[p1+1][p2+1]==pieza2)
+		tablero[p1+1][p2+1]=pieza;
+	
+	if((p1+1<11&&p2-1>-1)&&tablero[p1+1][p2-1]==pieza2)
+                tablero[p1+1][p2-1]=pieza;
+	
+	if((p1-1>-1&&p2-1>-1)&&tablero[p1-1][p2-1]==pieza2)
+                tablero[p1-1][p2-1]=pieza;
+	
+	if((p1-1>-1&&p2+1<11)&&tablero[p1-1][p2+1]==pieza2)
+                tablero[p1-1][p2+1]=pieza;
+
+	if(p1+1<11&&tablero[p1+1][p2]==pieza2)
+		tablero[p1+1][p2]=pieza;
+	
+	if(p2+1<11&&tablero[p1][p2+1]==pieza2)
+                tablero[p1][p2+1]=pieza;
+	
+	if(p1-1>-1&&tablero[p1-1][p2]==pieza2)
+                tablero[p1-1][p2]=pieza;
+	
+	if(p2-1>-1&&tablero[p1][p2-1]==pieza2)
+                tablero[p1][p2-1]=pieza;
+
+
 }
 
 void Tablero::llenarTablero()
