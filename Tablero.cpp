@@ -52,6 +52,16 @@ void Tablero::menu()
 				{
 					
 				}
+				if(espaciosVacios==0)
+				{
+					if(espaciosA()>espaciosB())
+						cout<<"Jugador 1 gana"<<endl;
+					else if(espaciosB()>espaciosA())
+						cout<<"Jugador 2 gana"<<endl;
+					else if(espaciosA()==espaciosB())
+						cout<<"Empate"<<endl;
+					op++;
+				}
 			}
 			else
 				cout<<"Posición inválida."<<endl;
