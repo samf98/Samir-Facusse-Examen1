@@ -361,7 +361,7 @@ void Tablero::llenarTablero()
 	tablero[10][10]=1;
 	tablero[0][10]=2;
 	tablero[10][0]=2;
-	cout<<"BOOP"<<endl;
+	cout<<"BAP"<<endl;
 }
 
 void Tablero::imprimirTablero()
