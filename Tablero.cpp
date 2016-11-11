@@ -34,6 +34,32 @@ void Tablero::menu()
 	do
 	{
 		imprimirTablero();
+
+		if(espaciosA()==0)
+		{
+			cout<<"Jugador 2 gana"<<endl;
+			op++;
+		}
+
+		if(espaciosB()==0)
+		{
+			cout<<"Jugador 1 gana"<<endl;
+			op++;
+		}
+
+		if(espaciosVacios()==0)
+		{
+			if(espaciosA()>espaciosB())
+				cout<<"Jugador 1 gana"<<endl;
+
+			else if(espaciosB()>espaciosA())
+				cout<<"Jugador 2 gana"<<endl;
+
+			else if(espaciosA()==espaciosB())
+				cout<<"Empate"<<endl;
+			op++;
+		}
+
 		if(cont%2==0)
 			pieza = 1;
 		else
@@ -361,7 +387,6 @@ void Tablero::llenarTablero()
 	tablero[10][10]=1;
 	tablero[0][10]=2;
 	tablero[10][0]=2;
-	cout<<"BEP"<<endl;
 }
 
 void Tablero::imprimirTablero()
