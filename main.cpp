@@ -5,7 +5,7 @@ int main()
 {
 	Tablero* tablero = new Tablero();
 	tablero->llenarTablero();
-	tablero->imprimirTablero();
+	tablero->menu();
 	delete tablero;
 
 
